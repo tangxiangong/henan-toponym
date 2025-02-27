@@ -1,4 +1,4 @@
-use crate::{details::*, division::*, search::*};
+use super::{details::*, division::*, search::*};
 use reqwest::{Client, Error};
 
 pub struct Cli {
@@ -53,13 +53,7 @@ mod tests {
         let result = cli.division("410000000000", QueryLevel::GrandChild).await;
         assert!(result.is_ok(), "API调用失败: {:?}", result.err());
         let data = result.unwrap();
-        assert!(data.children.is_some());
-        if let Some(children) = data.children {
-            assert!(!children.is_empty(), "河南省下级行政区划不应为空");
-            for child in children {
-                println!("{:#?}", child);
-            }
-        }
+        assert!(!data.children.is_empty(), "河南省下级行政区划不应为空");
     }
 
     #[tokio::test]
@@ -67,15 +61,14 @@ mod tests {
         let cli = Cli::new();
         let response = cli.details("7531bd84-5dd9-4323-b8fe-50b5c9d5f793").await;
         assert!(response.is_ok(), "API调用失败: {:?}", response.err());
-        let data = response.unwrap();
-        println!("{:?}", data);
     }
 
     #[tokio::test]
     async fn test_search() {
         let params = SearchParamsBuilder::default()
             .st_name("唐庄村")
-            .search_type(SearchType::Exact)
+            .search_type(SearchType::Fuzzy)
+            .code("410000000000")
             .page(1)
             .size(100)
             .build()
@@ -90,7 +83,6 @@ mod tests {
         let first_record = &records[0];
         assert_eq!(first_record.standard_name, "唐庄村");
 
-        println!("找到 {} 条匹配记录", records.len());
-        println!("第一条记录: {:#?}", first_record);
+        println!("{:#?}", first_record);
     }
 }

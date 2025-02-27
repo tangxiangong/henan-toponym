@@ -48,7 +48,7 @@
 //! | gdm | 空间坐标信息，GeoJson格式 | Object |  
 //!
 
-use crate::details::Geometry;
+use super::details::Geometry;
 use derive_builder::Builder;
 use serde::{Deserialize, Serialize};
 

@@ -125,7 +125,7 @@ pub struct DivisonQueryResult {
     /// 行政区划单位
     pub r#type: String,
     /// 下级区划
-    pub children: Option<Vec<DivisonQueryResult>>,
+    pub children: Vec<DivisonQueryResult>,
 }
 
 #[cfg(test)]
