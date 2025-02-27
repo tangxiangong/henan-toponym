@@ -73,35 +73,35 @@ pub struct DetailsQueryResponse {
     /// 历史地名
     pub old_name: Option<String>,
     /// 少数民族语书写
-    pub ethnic_minorities_writing: Option<String>,
+    pub ethnic_minorities_writing: String,
     /// 空间坐标信息，GeoJson 格式
-    pub gdm: Option<Geometry>,
+    pub gdm: Geometry,
     /// 政区的历史沿革
     pub government_history: Option<String>,
     /// 数据 ID
-    pub id: Option<String>,
+    pub id: String,
     /// 地名代码
-    pub place_code: Option<String>,
+    pub place_code: String,
     /// 地名的含义
-    pub place_meaning: Option<String>,
+    pub place_meaning: String,
     /// 地名的来历
-    pub place_origin: Option<String>,
+    pub place_origin: String,
     /// 地名类别
-    pub place_type: Option<String>,
+    pub place_type: String,
     /// 地名类别代码
-    pub place_type_code: Option<String>,
+    pub place_type_code: String,
     /// 省级政区名称
-    pub province_name: Option<String>,
+    pub province_name: String,
     /// 罗马字母拼写
-    pub roman_alphabet_spelling: Option<String>,
+    pub roman_alphabet_spelling: String,
     /// 标准名称
-    pub standard_name: Option<String>,
+    pub standard_name: String,
     /// 区县级行政代码
     pub area: Option<String>,
     /// 市级行政代码
     pub city: Option<String>,
     /// 省级行政代码
-    pub province: Option<String>,
+    pub province: String,
 }
 
 /// 空间坐标信息，GeoJson 格式

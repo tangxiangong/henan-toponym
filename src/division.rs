@@ -75,10 +75,10 @@ impl DivisionQueryParams {
         }
     }
 
-    pub fn latest(code: String, max_level: QueryLevel) -> Self {
+    pub fn latest(code: &str, max_level: QueryLevel) -> Self {
         Self {
             year: None,
-            code: Some(code),
+            code: Some(code.to_string()),
             max_level,
         }
     }
