@@ -45,7 +45,6 @@
 //! | :---: | :---: | :---: |
 //! | type | 类型 | String |
 //! | coordinates | 坐标 | Object |
-//!
 
 use serde::{Deserialize, Serialize};
 
@@ -78,13 +77,13 @@ pub struct DetailsQueryResponse {
     /// 空间坐标信息，GeoJson 格式
     pub gdm: Option<Geometry>,
     /// 政区的历史沿革
-    pub government_history: String,
+    pub government_history: Option<String>,
     /// 数据 ID
-    pub id: String,
+    pub id: Option<String>,
     /// 地名代码
-    pub place_code: String,
+    pub place_code: Option<String>,
     /// 地名的含义
-    pub place_meaning: String,
+    pub place_meaning: Option<String>,
     /// 地名的来历
     pub place_origin: Option<String>,
     /// 地名类别
@@ -94,9 +93,9 @@ pub struct DetailsQueryResponse {
     /// 省级政区名称
     pub province_name: Option<String>,
     /// 罗马字母拼写
-    pub roman_alphabet_spelling: String,
+    pub roman_alphabet_spelling: Option<String>,
     /// 标准名称
-    pub standard_name: String,
+    pub standard_name: Option<String>,
     /// 区县级行政代码
     pub area: Option<String>,
     /// 市级行政代码
