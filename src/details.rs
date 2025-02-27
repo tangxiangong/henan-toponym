@@ -1,24 +1,24 @@
 //! # 地名详情
-//! 
+//!
 //! ## 接口描述
-//! 
+//!
 //! 地名详情服务根据输入的地名ID来查询相关地名详细信息
-//! 
+//!
 //! ## 接口网址格式
 //! ```text
 //! https://dmfw.mca.gov.cn/9095/stname/detailsPub
 //! ```
-//! 
+//!
 //! ## 请求报文结构
-//! 
-//! 请求方式: POST 
-//! 
+//!
+//! 请求方式: POST
+//!
 //! | 参数名称 | 是否必须 | 类型 | 默认值 | 描述 (示例) |
 //! | :---: | :---: | :---: | :---: | :---: |
 //! | id | 是 | String | | 地名 ID |
-//! 
+//!
 //! ## 响应报文结构
-//! 
+//!
 //! | 参数名称 | 描述 | 类型 |
 //! | :---: | :---: | :---: |
 //! | area_name | 所在区县名称 | String |
@@ -39,13 +39,13 @@
 //! | area | 区县级行政代码 | String |
 //! | city | 市级行政代码 | String |
 //! | province | 省级行政代码 | String |
-//! 
+//!
 //! gdm
 //! | 参数名称 | 描述 | 类型 |
 //! | :---: | :---: | :---: |
 //! | type | 类型 | String |
 //! | coordinates | 坐标 | Object |
-//! 
+//!
 
 use serde::{Deserialize, Serialize};
 
@@ -63,7 +63,6 @@ impl DetailsQueryParams {
         Self { id }
     }
 }
-
 
 /// 地名查询响应
 #[derive(Debug, Clone, Deserialize)]

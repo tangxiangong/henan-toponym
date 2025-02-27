@@ -1,18 +1,18 @@
 //! # 地名搜索
-//! 
+//!
 //! ## 接口描述
-//! 
+//!
 //! 地名搜索服务根据输入的地名名称来查询相关地名信息
-//! 
+//!
 //! ## 接口网址格式
 //! ```text
 //! https://dmfw.mca.gov.cn/9095/stname/listPub
 //! ```
-//! 
+//!
 //! ## 请求报文结构
-//! 
+//!
 //! 请求方式: GET
-//! 
+//!
 //! | 参数名称 | 是否必须 | 类型 | 默认值 | 描述 (示例) |
 //! | :---: | :---: | :---: | :---: | :---: |
 //! | stName | 是 | String | | 标准名称 |
@@ -22,14 +22,14 @@
 //! | code | 否 | String |  | 行政区划代码 |
 //! | page | 否 | int |  | 页码 |
 //! | size | 否 | int |  | 每页大小 |
-//! 
+//!
 //! ## 响应报文结构
-//! 
+//!
 //! | 参数名称 | 描述 | 类型 |
 //! | :---: | :---: | :---: |
 //! | records | 返回结果集 | Object[] |
 //! | total | 数据总数 | int |
-//! 
+//!
 //! 返回结果集
 //! | 参数名称 | 描述 | 类型 |
 //! | :---: | :---: | :---: |
@@ -46,12 +46,11 @@
 //! | city | 市级行政代码 | String |
 //! | province | 省级行政代码 | String |
 //! | gdm | 空间坐标信息，GeoJson格式 | Object |  
-//! 
+//!
 
-
-use serde::{Deserialize, Serialize};
 use crate::details::Geometry;
 use derive_builder::Builder;
+use serde::{Deserialize, Serialize};
 
 pub const SEARCH_URL: &str = "https://dmfw.mca.gov.cn/9095/stname/listPub";
 

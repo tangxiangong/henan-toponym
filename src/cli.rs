@@ -1,4 +1,4 @@
-use crate::{division::*, details::*, search::*};
+use crate::{details::*, division::*, search::*};
 use reqwest::{Client, Error};
 
 pub struct Cli {
@@ -35,10 +35,7 @@ impl Cli {
         Ok(response.records)
     }
 
-    pub async fn details(
-        &self,
-        id: String,
-    ) -> Result<DetailsQueryResponse, Error> {
+    pub async fn details(&self, id: String) -> Result<DetailsQueryResponse, Error> {
         let req = DetailsQueryParams::new(id);
         let cli = self.client.post(DETAILS_QUERY_URL).query(&req);
         let response = cli.send().await?.json::<DetailsQueryResponse>().await?;
@@ -75,7 +72,7 @@ mod tests {
         let response = cli.send().await.unwrap();
         let body = response.text().await.unwrap();
         println!("{}", body);
-        
+
         // let cli = Cli::new();
         // let response = cli.details("411221000000".to_string()).await;
         // assert!(response.is_ok(), "API调用失败: {:?}", response.err());
@@ -92,17 +89,17 @@ mod tests {
             .size(100)
             .build()
             .unwrap();
-        
+
         let records = Cli::search(&params).await;
         assert!(records.is_ok(), "API调用失败: {:?}", records.err());
-        
+
         let records = records.unwrap();
         assert!(!records.is_empty(), "搜索结果不应为空");
-        
+
         // 验证第一条记录包含预期的地名
         let first_record = &records[0];
         assert_eq!(first_record.standard_name, "唐庄村");
-        
+
         println!("找到 {} 条匹配记录", records.len());
         println!("第一条记录: {:#?}", first_record);
     }
