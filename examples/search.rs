@@ -36,6 +36,9 @@ async fn main() {
                     record.city_name.as_deref().unwrap_or("未知"),
                     record.area_name.as_deref().unwrap_or("未知"));
                 println!("   类型: {}", record.place_type);
+                if let Some(ethnic) = &record.ethnic_minorities_writing {
+                    println!("   少数民族语书写: {}", ethnic);
+                }
                 println!();
             }
         }
