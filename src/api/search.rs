@@ -93,29 +93,29 @@ impl SearchParams {
     pub fn st_name(&self) -> &str {
         &self.st_name
     }
-    
+
     /// 获取类别代码
     pub fn place_type_code(&self) -> Option<&str> {
         self.place_type_code.as_deref()
     }
-    
+
     /// 获取年份
     pub fn year(&self) -> Option<i32> {
         self.year
     }
-    
+
     /// 获取匹配方式
     pub fn search_type(&self) -> Option<&SearchType> {
         self.search_type.as_ref()
     }
-    
+
     /// 获取行政区划代码
     pub fn code(&self) -> Option<&str> {
         self.code.as_deref()
     }
-    
+
     /// 获取简化的行政区划代码
-    /// 
+    ///
     /// API只接受短格式的行政区划代码，如"41"表示河南省，"4103"表示洛阳市
     /// 此函数将完整的18位代码转换为短格式
     pub fn simplified_code(&self) -> Option<String> {
@@ -125,9 +125,16 @@ impl SearchParams {
                 // 省级代码：前2位
                 // 市级代码：前4位
                 // 区县级代码：前6位
-                if code.starts_with("41") { // 河南省
+                // 乡镇级别代码：也使用区县级代码（前6位），因为API不支持直接使用乡镇级别代码
+                if code.starts_with("41") {
+                    // 河南省
                     if code.len() >= 4 && &code[2..4] != "00" {
-                        code[0..4].to_string() // 市级
+                        if code.len() >= 6 && &code[4..6] != "00" {
+                            // 对于乡镇级别及以下的代码，统一使用区县级代码
+                            code[0..6].to_string() // 区县级
+                        } else {
+                            code[0..4].to_string() // 市级
+                        }
                     } else {
                         code[0..2].to_string() // 省级
                     }
@@ -139,12 +146,12 @@ impl SearchParams {
             }
         })
     }
-    
+
     /// 获取页码
     pub fn page(&self) -> Option<usize> {
         self.page
     }
-    
+
     /// 获取每页大小
     pub fn size(&self) -> Option<usize> {
         self.size
