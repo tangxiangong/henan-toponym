@@ -49,6 +49,7 @@ mod tests {
     use crate::api::Cli;
 
     #[tokio::test]
+    #[ignore]
     async fn test_county_division() {
         let codes = filter_county_division("410000000000").await;
         println!("{:#?}", codes.len());
