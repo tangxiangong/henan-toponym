@@ -64,7 +64,7 @@ impl DetailsQueryParams {
 }
 
 /// 地名查询响应
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct DetailsQueryResponse {
     /// 所在区县名称
     pub area_name: Option<String>,
@@ -105,7 +105,7 @@ pub struct DetailsQueryResponse {
 }
 
 /// 空间坐标信息，GeoJson 格式
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Deserialize, Serialize)]
 pub struct Geometry {
     /// 类型
     pub r#type: String,
